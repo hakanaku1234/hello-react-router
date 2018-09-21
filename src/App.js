@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import About from './About';
-import Home from './Home';
+import About from './components/About';
+import Home from './components/Home';
+import NoMatch from './components/Error';
 
 import {
   BrowserRouter as Router,
@@ -31,6 +32,7 @@ class App extends Component {
             <Route strict exact path="/about" component={ About } />
             <Route path="/about/new" component={ About } />
             <Route path="/home" component={ Home } />
+            <Route component={ NoMatch } />
           </div>
         </div>
       </Router>
