@@ -34,6 +34,7 @@ class App extends Component {
               <Route strict exact path="/about" component={ About } />
               <Route path="/about/new" component={ About } />
               <Route path="/home" component={ Home } />
+              <Route path="/new_home" render={ (props) => <Home { ...props } name={ "rails365" } /> } />
               <Route component={ NoMatch } />
             </Switch>
           </div>
