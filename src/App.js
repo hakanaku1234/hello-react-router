@@ -8,7 +8,8 @@ import NoMatch from './components/Error';
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  Switch
 } from 'react-router-dom'
 
 // import Link from 'react-router-dom/Link';
@@ -28,11 +29,13 @@ class App extends Component {
               <li><Link to="/about">About</Link></li>
               <li><Link to="/error">Error</Link></li>
             </ul>
-            <Route exact path="/" component={ Home } />
-            <Route strict exact path="/about" component={ About } />
-            <Route path="/about/new" component={ About } />
-            <Route path="/home" component={ Home } />
-            <Route component={ NoMatch } />
+            <Switch>
+              <Route exact path="/" component={ Home } />
+              <Route strict exact path="/about" component={ About } />
+              <Route path="/about/new" component={ About } />
+              <Route path="/home" component={ Home } />
+              <Route component={ NoMatch } />
+            </Switch>
           </div>
         </div>
       </Router>
