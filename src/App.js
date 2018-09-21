@@ -8,7 +8,7 @@ import NoMatch from './components/Error';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
+  NavLink,
   Switch
 } from 'react-router-dom'
 
@@ -25,9 +25,35 @@ class App extends Component {
           </header>
           <div className="App-intro">
             <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/error">Error</Link></li>
+              <li>
+                <NavLink
+                  exact
+                  to="/"
+                  activeStyle={{
+                    color: 'green'
+                }}>
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  exact
+                  to="/about"
+                  activeStyle={{
+                    color: 'green'
+                }}>
+                  About
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/error"
+                  activeStyle={{
+                    color: 'green'
+                }}>
+                  Error
+                </NavLink>
+              </li>
             </ul>
             <Switch>
               <Route exact path="/" component={ Home } />
