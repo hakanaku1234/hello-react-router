@@ -14,6 +14,12 @@ import {
 
 // import Link from 'react-router-dom/Link';
 
+const User = ({ match }) => {
+  return (
+    <div>User { match.params.id }</div>
+  )
+}
+
 class App extends Component {
   render() {
     return (
@@ -61,6 +67,7 @@ class App extends Component {
               <Route path="/about/new" component={ About } />
               <Route path="/home" component={ Home } />
               <Route path="/new_home" render={ (props) => <Home { ...props } name={ "rails365" } /> } />
+              <Route path="/users/:id" component={ User } />
               <Route component={ NoMatch } />
             </Switch>
           </div>
