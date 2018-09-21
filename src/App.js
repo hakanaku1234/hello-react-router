@@ -28,7 +28,7 @@ class App extends Component {
               <li><Link to="/error">Error</Link></li>
             </ul>
             <Route exact path="/" component={ Home } />
-            <Route exact path="/about" component={ About } />
+            <Route strict exact path="/about" component={ About } />
             <Route path="/about/new" component={ About } />
             <Route path="/home" component={ Home } />
           </div>
