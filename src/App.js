@@ -4,6 +4,7 @@ import './App.css';
 import About from './components/About';
 import Home from './components/Home';
 import NoMatch from './components/Error';
+import queryString from 'query-string';
 
 import {
   BrowserRouter as Router,
@@ -14,9 +15,15 @@ import {
 
 // import Link from 'react-router-dom/Link';
 
-const User = ({ match }) => {
+const User = (props) => {
+  // const params = new URLSearchParams(props.location.search);
+  // console.log(params.get("name"));
+  // console.log(params.get("a"));
+  const values = queryString.parse(props.location.search);
+  console.log(values.name);
+  console.log(values.a);
   return (
-    <div>User { match.params.id }</div>
+    <div>User { props.match.params.id }</div>
   )
 }
 
@@ -58,6 +65,15 @@ class App extends Component {
                     color: 'green'
                 }}>
                   Error
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/users/rails365"
+                  activeStyle={{
+                    color: 'green'
+                }}>
+                  Rails365
                 </NavLink>
               </li>
             </ul>
