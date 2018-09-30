@@ -10,6 +10,7 @@ import {
   BrowserRouter as Router,
   Route,
   NavLink,
+  Link,
   Switch
 } from 'react-router-dom'
 
@@ -19,9 +20,11 @@ const User = (props) => {
   // const params = new URLSearchParams(props.location.search);
   // console.log(params.get("name"));
   // console.log(params.get("a"));
-  const values = queryString.parse(props.location.search);
-  console.log(values.name);
-  console.log(values.a);
+  // const values = queryString.parse(props.location.search);
+  // console.log(values.name);
+  // console.log(values.a);
+  // console.log(props.location.state.fromDashboard);
+  console.log(props);
   return (
     <div>User { props.match.params.id }</div>
   )
@@ -75,6 +78,16 @@ class App extends Component {
                 }}>
                   Rails365
                 </NavLink>
+              </li>
+              <li>
+                <Link to={{
+                  pathname: '/users/rails365',
+                  search: '?a=b',
+                  hash: '#the-hash',
+                  state: { fromDashboard: true }
+                }}>
+                  pro
+                </Link>
               </li>
             </ul>
             <Switch>
