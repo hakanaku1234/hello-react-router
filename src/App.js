@@ -11,7 +11,8 @@ import {
   Route,
   NavLink,
   Link,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom'
 
 // import Link from 'react-router-dom/Link';
@@ -26,6 +27,8 @@ const User = (props) => {
   // console.log(props.location.state.fromDashboard);
   console.log(props);
   return (
+    props.match.params.id === 'rails365' ?
+    <Redirect to="/" /> :
     <div>User { props.match.params.id }</div>
   )
 }
@@ -96,7 +99,8 @@ class App extends Component {
               <Route path="/about/new" component={ About } />
               <Route path="/home" component={ Home } />
               <Route path="/new_home" render={ (props) => <Home { ...props } name={ "rails365" } /> } />
-              <Route path="/users/:id" component={ User } />
+              <Route path="/users/profile/:id" component={ User } />
+              <Redirect from="/users/:id" to="/users/profile/:id" />
               <Route component={ NoMatch } />
             </Switch>
           </div>
