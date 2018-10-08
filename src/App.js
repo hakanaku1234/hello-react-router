@@ -34,6 +34,10 @@ const User = (props) => {
 }
 
 class App extends Component {
+  handleClick = () => {
+    console.log(this.props);
+  }
+
   render() {
     return (
       <Router>
@@ -93,6 +97,9 @@ class App extends Component {
                 </Link>
               </li>
             </ul>
+            <div>
+              <button onClick={ () => this.handleClick() }>push</button>
+            </div>
             <Switch>
               <Route exact path="/" component={ Home } />
               <Route strict exact path="/about" component={ About } />

@@ -1,9 +1,11 @@
 import React from 'react'
 
 const Home = (props) => {
-  console.log(props);
   return (
-    <div> Welcome Home </div>
+    <div>
+      <button onClick={ () => props.history.push('/about') }>click me</button>
+      <p>Welcome Home</p>
+    </div>
   )
 }
 
