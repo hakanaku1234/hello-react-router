@@ -4,7 +4,7 @@ import './App.css';
 import About from './components/About';
 import Home from './components/Home';
 import NoMatch from './components/Error';
-import queryString from 'query-string';
+// import queryString from 'query-string';
 
 import {
   BrowserRouter as Router,
