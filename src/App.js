@@ -33,6 +33,25 @@ const User = (props) => {
   )
 }
 
+// const MenuLink = ({ children, to, exact }) => {
+//   const match = window.location.pathname === to
+//   return (
+//     <NavLink activeStyle={ match ? { color: 'green' } : {} } to={ to }>
+//       { match ? '>' : '' }{ children }
+//     </NavLink>
+//   )
+// }
+
+const MenuLink = ({ children, to, exact }) => {
+  return (
+    <Route path={ to } exact={ exact } children={ ({ match }) => (
+      <NavLink activeStyle={ match ? { color: 'green' } : {} } to={ to }>
+        { match ? '>' : '' }{ children }
+      </NavLink>
+    )} />
+  )
+}
+
 class App extends Component {
   handleClick = () => {
     console.log(this.props);
@@ -49,24 +68,14 @@ class App extends Component {
           <div className="App-intro">
             <ul>
               <li>
-                <NavLink
-                  exact
-                  to="/"
-                  activeStyle={{
-                    color: 'green'
-                }}>
+                <MenuLink exact={ true } to="/">
                   Home
-                </NavLink>
+                </MenuLink>
               </li>
               <li>
-                <NavLink
-                  exact
-                  to="/about"
-                  activeStyle={{
-                    color: 'green'
-                }}>
+                <MenuLink exact={ true } to="/about">
                   About
-                </NavLink>
+                </MenuLink>
               </li>
               <li>
                 <NavLink
