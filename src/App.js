@@ -52,6 +52,20 @@ const MenuLink = ({ children, to, exact }) => {
   )
 }
 
+const routes = [
+  {
+    path: "/",
+    component: Home,
+    exact: true
+  },
+  {
+    path: "/about",
+    component: About,
+    exact: true,
+    strict: true
+  }
+]
+
 class App extends Component {
   handleClick = () => {
     console.log(this.props);
@@ -110,8 +124,14 @@ class App extends Component {
               <button onClick={ () => this.handleClick() }>push</button>
             </div>
             <Switch>
-              <Route exact path="/" component={ Home } />
-              <Route strict exact path="/about" component={ About } />
+              { routes.map((route) => (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  component={route.component}
+                  { ...route }
+                />
+              ))}
               <Route path="/about/new" component={ About } />
               <Route path="/home" component={ Home } />
               <Route path="/new_home" render={ (props) => <Home { ...props } name={ "rails365" } /> } />
