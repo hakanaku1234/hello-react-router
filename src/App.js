@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import About from './components/About';
 import Home from './components/Home';
 import NoMatch from './components/Error';
 // import queryString from 'query-string';
@@ -66,6 +65,42 @@ const routes = [
   }
 ]
 
+class DynamicImport extends Component {
+  state = {
+    component: null
+  }
+
+  // componentDidMount
+  componentWillMount() {
+    this.props.load()
+      .then((mod) => this.setState({
+        component: mod.default
+      }))
+  }
+
+  render() {
+    return this.props.children(this.state.component)
+  }
+}
+
+const Profile = (props) => (
+  <DynamicImport load={() => import('./components/Profile')}>
+    {(Component) => Component === null 
+      ? <h1>Loading...</h1>
+      : <Component { ...props } />
+    }
+  </DynamicImport>
+)
+
+const About = (props) => (
+  <DynamicImport load={() => import('./components/About')}>
+    {(Component) => Component === null 
+      ? <h1>Loading...</h1>
+      : <Component { ...props } />
+    }
+  </DynamicImport>
+)
+
 class App extends Component {
   handleClick = () => {
     console.log(this.props);
@@ -84,6 +119,11 @@ class App extends Component {
               <li>
                 <MenuLink exact={ true } to="/">
                   Home
+                </MenuLink>
+              </li>
+              <li>
+                <MenuLink exact={ true } to="/profile">
+                  Profile
                 </MenuLink>
               </li>
               <li>
@@ -134,6 +174,7 @@ class App extends Component {
               ))}
               <Route path="/about/new" component={ About } />
               <Route path="/home" component={ Home } />
+              <Route path="/profile" component={ Profile } />
               <Route path="/new_home" render={ (props) => <Home { ...props } name={ "rails365" } /> } />
               <Route path="/users/profile/:id" component={ User } />
               <Redirect from="/users/:id" to="/users/profile/:id" />
